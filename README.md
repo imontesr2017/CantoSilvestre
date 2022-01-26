@@ -8,6 +8,7 @@ Las jaulas contienen 0 o mas pájaros.
 (Los usuarios pueden dejar mensajes en un foro) o (en las jaulas pueden tener huevos hijos de dos pajaros)
 
 Idea 2: Compra Venta de Artículos relacionados con el silvestrismo.
+
 Instancias:web, usuarios, ofertas, plataforma pago
 Un usuario tiene 0 o mas ofertas
 Una plataforma de pago tiene conjunto de valores Usuario/oferta
