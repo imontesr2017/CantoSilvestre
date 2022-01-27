@@ -2,13 +2,14 @@
 
 Idea 1: Web de gestión de jaulas de cría de pajaros
 
-Instancias:web, usuarios, jaulas, pájaros, (mensajes, foros) o (huevos)
+Instancias:web, usuarios, jaulas, pájaros, mensajes, foro.
 Un usuario tiene 0 o más jaulas
 Las jaulas contienen 0 o mas pájaros.
-(Los usuarios pueden dejar mensajes en un foro) o (en las jaulas pueden tener huevos hijos de dos pajaros)
+Los usuarios tienen 0 o mas mensajes.
+El foro contiene todos los mensajes oredenados por fecha de ultima actualización.
+Los usuarios registrados pueden colgar mensajes en un foro.
+Los usuarios no resgistrados solo podrán ver los mensajes colgados en el foro.
 
-Idea 2: Compra Venta de Artículos relacionados con el silvestrismo.
-
-Instancias:web, usuarios, ofertas, plataforma pago
-Un usuario tiene 0 o mas ofertas
-Una plataforma de pago tiene conjunto de valores Usuario/oferta
+Existe una segunda aplicación encargada de comprobar si los codigos de
+los pájaros en las jaulas son códigos reales dados de alta y están a nombre de ese usuario.
+Si los datos no coinciden se envia un mensaje de alerta al admin.
