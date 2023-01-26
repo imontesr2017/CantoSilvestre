@@ -6,7 +6,7 @@ Instancias:web, usuarios, jaulas, pájaros, mensajes, foro.
 Un usuario tiene 0 o más jaulas
 Las jaulas contienen 0 o mas pájaros.
 Los usuarios tienen 0 o mas mensajes.
-El foro contiene todos los mensajes oredenados por fecha de ultima actualización.
+El foro contiene todos los mensajes ordenados por fecha de última actualización.
 Los usuarios registrados pueden colgar mensajes en un foro.
 Los usuarios no resgistrados solo podrán ver los mensajes colgados en el foro.
 
