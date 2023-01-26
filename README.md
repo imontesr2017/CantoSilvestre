@@ -7,7 +7,7 @@ Un usuario tiene 0 o más jaulas
 Las jaulas contienen 0 o mas pájaros.
 Los usuarios tienen 0 o mas mensajes.
 El foro contiene todos los mensajes ordenados por fecha de última actualización.
-Los usuarios registrados pueden colgar mensajes en un foro.
+Los usuarios registrados pueden colgar mensajes en un foro y gestionar sus jaulas y pajaros.
 Los usuarios no resgistrados solo podrán ver los mensajes colgados en el foro.
 
 Existe una segunda aplicación encargada de comprobar si los codigos de
