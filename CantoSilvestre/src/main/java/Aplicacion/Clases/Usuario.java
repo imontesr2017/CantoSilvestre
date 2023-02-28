@@ -9,6 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Entity
 public class Usuario {
 	
@@ -16,18 +21,18 @@ public class Usuario {
 	private long id;
 	
 	private String nombre;
-	private String contraseña;
+	private String contrasena;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Mensaje> mensajes = new LinkedList<Mensaje>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Pajaro> pajaros = new LinkedList<Pajaro>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Jaula> jaulas = new LinkedList<Jaula>();
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Hilo> hilos = new LinkedList<Hilo>();
 	
 	
@@ -38,7 +43,7 @@ public class Usuario {
 	public Usuario(long id, String nombre, String contraseña) {
 		this.id = id;
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.contrasena = contraseña;
 	}
 
 
@@ -68,13 +73,13 @@ public class Usuario {
 
 
 	public String getContraseña() {
-		return contraseña;
+		return contrasena;
 	}
 
 
 
 	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+		this.contrasena = contraseña;
 	}
 
 
@@ -118,4 +123,12 @@ public class Usuario {
 	public void setPajaros(List<Pajaro> pajaros) {
 		this.pajaros = pajaros;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", mensajes=" + mensajes + ", pajaros=" + pajaros
+				+ ", jaulas=" + jaulas + ", hilos=" + hilos + "]";
+	}
+	
+	
 }

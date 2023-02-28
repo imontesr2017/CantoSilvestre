@@ -13,10 +13,13 @@ public class Mensaje {
 	private long id;
 	
 	private String texto;
+	
+	private String usuario;
 
 	protected Mensaje() {}
 	
-	public Mensaje(String texto) {
+	public Mensaje(String usuario, String texto) {
+		this.usuario = usuario;
 		this.texto = texto;
 	}
 
@@ -31,11 +34,23 @@ public class Mensaje {
 
 	@Override
 	public String toString() {
-		return "Mensaje [texto=" + texto + "]";
+		return usuario+ ": "+texto;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 	

@@ -53,6 +53,11 @@ public class Jaula {
 	public void setPajaros(List<Pajaro> pajaros) {
 		this.pajaros = pajaros;
 	}
+
+	@Override
+	public String toString() {
+		return "Jaula [id=" + id + ", nombre=" + nombre + ", pajaros=" + pajaros + "]";
+	}
 	
 	
 	

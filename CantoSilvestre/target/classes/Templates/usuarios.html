@@ -1,0 +1,11 @@
+{{>header}}
+
+		<h2>Lista de Usuarios</h2>
+		<ul class="items">
+			{{#usuarios}}
+			<li><a href="/usuario/{{id}}">{{nombre}}</a></li>
+			{{/usuarios}}
+		</ul>
+		
+		<button onclick="location.href='/nuevoUsuario'">Nuevo Usuario</button>
+{{>footer}}

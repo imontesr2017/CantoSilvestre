@@ -1,0 +1,43 @@
+{{>header}}
+
+<div>
+  <h2>"{{usuario.nombre}}"</h2>
+  
+  <h3>Pajaros</h3>
+    <div>
+    <ul>
+      {{#usuario.pajaros}}
+      <li>
+        {{this}}
+      </li>
+      {{/usuario.pajaros}}
+    </ul>
+  </div>
+  
+  <h3>Jaulas</h3>
+    <div>
+    <ul>
+      {{#usuario.jaulas}}
+      <li>
+        {{this}}
+      </li>
+      {{/usuario.jaulas}}
+    </ul>
+  </div>
+  
+  <h3>Hilos</h3>
+    <div>
+    <ul>
+      {{#usuario.hilos}}
+      <li>
+        <a href="/hilos/{{id}}">{{titulo}}</a>
+      </li>
+      {{/usuario.hilos}}
+    </ul>
+  </div>
+  
+  <button onclick="location.href='nuevoHilo'">Crear Hilo</button>
+
+</div>
+
+{{>footer}}

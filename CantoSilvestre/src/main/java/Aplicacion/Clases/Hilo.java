@@ -18,14 +18,17 @@ public class Hilo {
 	
 	private String titulo;
 	
+	private String descripcion;
+	
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Mensaje> listaMensajes = new LinkedList<Mensaje>();
 	
 
 	protected Hilo() {}
 	
-	public Hilo(String titulo) {
+	public Hilo(String titulo, String descripcion) {
 		this.titulo = titulo;
+		this.descripcion = descripcion;
 	}
 
 	public long getId() {
@@ -50,6 +53,11 @@ public class Hilo {
 
 	public void setListaMensajes(List<Mensaje> listaMensajes) {
 		this.listaMensajes = listaMensajes;
+	}
+
+	@Override
+	public String toString() {
+		return "Hilo [titulo=" + titulo + ", listaMensajes=" + listaMensajes + "]";
 	}
 	
 	

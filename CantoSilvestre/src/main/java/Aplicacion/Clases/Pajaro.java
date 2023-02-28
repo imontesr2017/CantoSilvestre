@@ -68,6 +68,11 @@ public class Pajaro {
 	public void setJaula(Jaula jaula) {
 		this.jaula = jaula;
 	}
+
+	@Override
+	public String toString() {
+		return "Pajaro [id=" + id + ", especie=" + especie + ", apuntes=" + apuntes + "]";
+	}
 	
 	
 
