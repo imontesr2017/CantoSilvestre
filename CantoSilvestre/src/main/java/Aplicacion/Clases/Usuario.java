@@ -126,9 +126,11 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", mensajes=" + mensajes + ", pajaros=" + pajaros
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", mensajes=" + mensajes + ", pajaros=" + pajaros
 				+ ", jaulas=" + jaulas + ", hilos=" + hilos + "]";
 	}
+
+	
 	
 	
 }

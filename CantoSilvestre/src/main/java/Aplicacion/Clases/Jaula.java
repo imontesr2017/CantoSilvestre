@@ -16,6 +16,7 @@ public class Jaula {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	private long usuario;
 	private String nombre;
 	
 	@OneToMany(mappedBy="jaula", cascade=CascadeType.ALL, orphanRemoval=true)
@@ -25,8 +26,8 @@ public class Jaula {
 		
 	}
 	
-	public Jaula(String nombre) {
-		super();
+	public Jaula(Long usuario, String nombre) {
+		this.usuario = usuario;
 		this.nombre = nombre;
 	}
 

@@ -16,6 +16,8 @@ public class Hilo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	private Long usuario;
+	
 	private String titulo;
 	
 	private String descripcion;
@@ -26,7 +28,8 @@ public class Hilo {
 
 	protected Hilo() {}
 	
-	public Hilo(String titulo, String descripcion) {
+	public Hilo(long usuario, String titulo, String descripcion) {
+		this.usuario = usuario;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 	}
@@ -57,8 +60,19 @@ public class Hilo {
 
 	@Override
 	public String toString() {
-		return "Hilo [titulo=" + titulo + ", listaMensajes=" + listaMensajes + "]";
+		return "Hilo [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", listaMensajes="
+				+ listaMensajes + "]";
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	
 	
 	
 

@@ -3,9 +3,10 @@
 		<h2>Foro</h2>
 		<ul class="items">
 			{{#hilos}}
-			<li><a href="/hilos/{{id}}">{{titulo}}</a></li>
+			<li><a href="/usuario/{{usuario}}/hilos/{{id}}">{{titulo}}</a>
+			<button onclick="location.href='/borrarHilo/{{id}}'">X</button></li>
 			{{/hilos}}
 		</ul>
-		<button onclick="location.href='nuevoHilo'">Crear Hilo</button>
-</body>
-</html>
+		
+
+{{>footer}}

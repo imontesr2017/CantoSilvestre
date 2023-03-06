@@ -1,63 +1,49 @@
 package Aplicacion.Controladores;
 
-import java.net.URI;
-
-import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import Aplicacion.Clases.Jaula;
-import Aplicacion.Repositorios.JaulaRepository;
+import Aplicacion.Service.JaulaService;
 
-@RestController
+@Controller
 public class JaulaController {
 
 	@Autowired
-	private JaulaRepository jaulas;
+	private JaulaService jaulaService;
 	
-	@GetMapping("/jaula")
-	public Collection<Jaula> getJaulas() {
-	return jaulas.findAll();
+	@GetMapping("/mostrarJaulas")
+	public String mostrarJaulas(Model model) {
+
+		model.addAttribute("jaulas", jaulaService.findAll());
+
+		return "jaulas";
 	}
 	
-	@GetMapping("/jaula/{id}")
-	public ResponseEntity<Jaula> getJaula(@PathVariable long id) {
-		Optional<Jaula> jaula = jaulas.findById(id);
-		return ResponseEntity.of(jaula);
+	@GetMapping("usuario/{user}/jaulas/{id}")
+	public String mostrarLibro(Model model, @PathVariable long user, @PathVariable long id) {
+
+		Optional<Jaula> jaula = jaulaService.findById(id);
+		if (jaula.isPresent()) {
+			model.addAttribute("jaula", jaula.get());
+			return "jaula";
+		} else {
+			return "jaulas";
+		}
+
 	}
 	
-	@PostMapping("/jaula")
-	public ResponseEntity<Jaula> createJaula(@RequestBody Jaula jaula) {
-		jaulas.save(jaula);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(jaula.getId()).toUri();
-		return ResponseEntity.created(location).body(jaula);
-	}
-	
-	@PutMapping("/jaula/{id}")
-	public ResponseEntity<Jaula> replaceJaula(@PathVariable long id, @RequestBody Jaula newJaula) {
-		Optional<Jaula> jaula = jaulas.findById(id);
-		return ResponseEntity.of(jaula.map(p -> {
-			newJaula.setId(id);
-			jaulas.save(newJaula);
-			return newJaula;
-		}));	
-	}
-	
-	@DeleteMapping("/jaula/{id}")
-	public ResponseEntity<Jaula> deleteJaula(@PathVariable long id) {
-		Optional<Jaula> jaula = jaulas.findById(id);
-		jaula.ifPresent(p -> jaulas.deleteById(id));
-		return ResponseEntity.of(jaula);
+	@RequestMapping("/borrarJaula/{idJaula}")
+	public String borrarJaula(Model model, @PathVariable long idJaula) {
+		jaulaService.delete(idJaula);
+		return "/mostrarJaulas";
 	}
 	
 }

@@ -1,0 +1,16 @@
+{{>header}}
+
+<form action="/usuario/{{idUsuario}}/jaula/{{idJaula}}/guardarPajaro">
+	<p>Numero de la anilla :</p>
+	<input type='text' name='idPajaro'/>
+	
+	<p>Especie :</p>
+	<input type='text' name='especie'/>
+	
+	<p>Apuntes :</p>
+	<textarea name="apuntes" placeholder="apuntes"></textarea>
+	
+	<input type='submit' value='Enviar'/>
+</form>
+
+{{>footer}}
