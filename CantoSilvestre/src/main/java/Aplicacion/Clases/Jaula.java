@@ -27,7 +27,7 @@ public class Jaula {
 	}
 	
 	public Jaula(Long usuario, String nombre) {
-		this.usuario = usuario;
+		this.setUsuario(usuario);
 		this.nombre = nombre;
 	}
 
@@ -58,6 +58,14 @@ public class Jaula {
 	@Override
 	public String toString() {
 		return "Jaula [id=" + id + ", nombre=" + nombre + ", pajaros=" + pajaros + "]";
+	}
+
+	public long getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(long usuario) {
+		this.usuario = usuario;
 	}
 	
 	

@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -35,15 +37,17 @@ public class Usuario {
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Hilo> hilos = new LinkedList<Hilo>();
 	
-	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 	
 	protected Usuario() {
 	}
 	
-	public Usuario(long id, String nombre, String contraseña) {
+	public Usuario(long id, String nombre, String contraseña, String... roles) {
 		this.id = id;
 		this.nombre = nombre;
 		this.contrasena = contraseña;
+		this.roles = List.of(roles);
 	}
 
 
@@ -128,6 +132,22 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", mensajes=" + mensajes + ", pajaros=" + pajaros
 				+ ", jaulas=" + jaulas + ", hilos=" + hilos + "]";
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	

@@ -1,14 +1,17 @@
 package Aplicacion.Controladores;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,12 +30,28 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 	
 	@PostConstruct
 	public void init() {
-		Usuario pepe = new Usuario(1, "Pepe", "1234");
-		Usuario marta = new Usuario(2, "Marta", "1111");
-		Usuario sara = new Usuario(3, "Sara", "pajaro");
+		Usuario pepe = new Usuario(1, "Pepe", "1234", "USER");
+		Usuario marta = new Usuario(2, "Marta", "1111", "USER");
+		Usuario sara = new Usuario(3, "Sara", "pajaro", "USER");
+		Usuario admin = new Usuario(0, "admin", "admin", "ADMIN");
 		
 		Jaula jaulaCrianza = new Jaula(pepe.getId(),"Crianza");
 		Jaula jaulaAdultos = new Jaula(marta.getId(),"Competicion");
@@ -76,6 +95,7 @@ public class UsuarioController {
 		usuarioService.save(pepe);
 		usuarioService.save(marta);
 		usuarioService.save(sara);
+		usuarioService.save(admin);
 		
 	}
 	
