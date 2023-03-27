@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Entity
+@Entity(name = "UserTable")
 public class Usuario {
 	
 	@Id
 	private long id;
 	
-	private String nombre;
-	private String contrasena;
+	private String name;
+	
+	private String password;
 	
 	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Mensaje> mensajes = new LinkedList<Mensaje>();
@@ -45,8 +46,8 @@ public class Usuario {
 	
 	public Usuario(long id, String nombre, String contraseña, String... roles) {
 		this.id = id;
-		this.nombre = nombre;
-		this.contrasena = contraseña;
+		this.name = nombre;
+		this.password = contraseña;
 		this.roles = List.of(roles);
 	}
 
@@ -64,31 +65,15 @@ public class Usuario {
 
 
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String nombre) {
+		this.name = nombre;
 	}
-
-
-
-	public String getContraseña() {
-		return contrasena;
-	}
-
-
-
-	public void setContraseña(String contraseña) {
-		this.contrasena = contraseña;
-	}
-
-
-
-
 
 	public List<Jaula> getJaulas() {
 		return jaulas;
@@ -130,7 +115,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", mensajes=" + mensajes + ", pajaros=" + pajaros
+		return "Usuario [id=" + id + ", nombre=" + name + ", mensajes=" + mensajes + ", pajaros=" + pajaros
 				+ ", jaulas=" + jaulas + ", hilos=" + hilos + "]";
 	}
 
@@ -142,12 +127,12 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	

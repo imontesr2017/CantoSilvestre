@@ -39,15 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/logout").permitAll();
 
         // Private pages
-        http.authorizeRequests().antMatchers("/usuario/{id}").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{id}/nuevoHilo").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{id}/guardarHilo").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{idUsuario}/hilo/{idHilo}/nuevoMensaje").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{idUsuario}/hilo/{idHilo}/guardarMensaje").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{id}/nuevaJaula").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{id}/guardarJaula").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{idUsuario}/jaula/{idJaula}/nuevoPajaro").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/usuario/{idUsuario}/jaula/{idJaula}/guardarPajaro").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/usuarios/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/nuevoHilo").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/guardarHilo").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/hilo/{idHilo}/nuevoMensaje").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/hilo/{idHilo}/guardarMensaje").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/nuevaJaula").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/guardarJaula").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/jaula/{idJaula}/nuevoPajaro").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/jaula/{idJaula}/guardarPajaro").hasAnyRole("USER");
         
         
         http.authorizeRequests().antMatchers("/mostrarUsuarios").hasAnyRole("ADMIN");
@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/borrarUsuario/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/editarUsuario/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/actualizarUsuario/{id}").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/mostrarUsuarios").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/mostrarUsuarios").hasAnyRole("ADMIN");
 
         // Login form

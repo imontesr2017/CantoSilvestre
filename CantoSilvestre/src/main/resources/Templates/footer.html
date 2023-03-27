@@ -1,5 +1,18 @@
+
+
 <button onclick="location.href='/'">Foro</button>
-<button onclick="location.href='/mostrarUsuarios'">Usuarios</button>
-<button onclick="location.href='/mostrarJaulas'">Jaulas</button>
+
+{{^logged}}
+	
+	
+{{/logged}} {{#logged}}
+	<button onclick="location.href='/usuarios/{{userId}}'">Perfil</button>
+	<button onclick="location.href='/usuarios'">Usuarios</button>
+{{/logged}}
+
+
+
+
+
 </body>
 </html>

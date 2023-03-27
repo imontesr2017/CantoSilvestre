@@ -17,18 +17,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import Aplicacion.Clases.Hilo;
 import Aplicacion.Clases.Jaula;
 import Aplicacion.Clases.Mensaje;
 import Aplicacion.Clases.Pajaro;
 import Aplicacion.Clases.Usuario;
+import Aplicacion.Service.HiloService;
+import Aplicacion.Service.JaulaService;
+import Aplicacion.Service.MensajeService;
+import Aplicacion.Service.PajaroService;
 import Aplicacion.Service.UsuarioService;
 
 @Controller
 public class UsuarioController {
+
+
+	//Servicios de acceso a la base de datos
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private HiloService hiloService;
+	@Autowired
+	private MensajeService mensajeService;
+	@Autowired
+	private JaulaService jaulaService;
+	@Autowired
+	private PajaroService pajaroService;
+	
+	//Seguridad
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -39,6 +59,8 @@ public class UsuarioController {
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
+			Usuario p = (Usuario) principal;
+			model.addAttribute("userId", p.getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 		} else {
@@ -48,10 +70,10 @@ public class UsuarioController {
 	
 	@PostConstruct
 	public void init() {
-		Usuario pepe = new Usuario(1, "Pepe", "1234", "USER");
-		Usuario marta = new Usuario(2, "Marta", "1111", "USER");
-		Usuario sara = new Usuario(3, "Sara", "pajaro", "USER");
-		Usuario admin = new Usuario(0, "admin", "admin", "ADMIN");
+		Usuario pepe = new Usuario(1, "Pepe", passwordEncoder.encode("1234"), "USER");
+		Usuario marta = new Usuario(2, "Marta", passwordEncoder.encode("1111"), "USER");
+		Usuario sara = new Usuario(3, "Sara", passwordEncoder.encode("pajaro"), "USER");
+		Usuario admin = new Usuario(0, "admin", passwordEncoder.encode("admin"), "USER", "ADMIN");
 		
 		Jaula jaulaCrianza = new Jaula(pepe.getId(),"Crianza");
 		Jaula jaulaAdultos = new Jaula(marta.getId(),"Competicion");
@@ -62,9 +84,9 @@ public class UsuarioController {
 		Pajaro pajaro3 = new Pajaro(3, "Jilguero", jaulaAdultos, "Preparado para competición");
 		Pajaro pajaro4 = new Pajaro(4, "Jilguero", jaulaCrianza, "Para cria");
 		
-		Hilo hilo1 = new Hilo(pepe.getId(), "Cambio jilguero por canario", "Hola tengo 3 jilgueros para cria y me gustaria 3 canarios para cria");
-		Hilo hilo2 = new Hilo(pepe.getId(), "Como alimento a mis pajaros?", "¿no sé que pienso deberia dar a mis pajaros?");
-		Hilo hilo3 = new Hilo(marta.getId(), "Vendo jaulas", "");
+		Hilo hilo1 = new Hilo("Cambio jilguero por canario", "Hola tengo 3 jilgueros para cria y me gustaria 3 canarios para cria");
+		Hilo hilo2 = new Hilo("Como alimento a mis pajaros?", "¿no sé que pienso deberia dar a mis pajaros?");
+		Hilo hilo3 = new Hilo("Vendo jaulas", "");
 		
 		Mensaje mensaje1 = new Mensaje("solo me quedan dos");
 		Mensaje mensaje2 = new Mensaje("Hola estoy interesada en el cambio");
@@ -99,7 +121,7 @@ public class UsuarioController {
 		
 	}
 	
-	@GetMapping("/mostrarUsuarios")
+	@GetMapping("/usuarios")
 	public String mostrarUsuarios(Model model) {
 
 		model.addAttribute("usuarios", usuarioService.findAll());
@@ -107,7 +129,7 @@ public class UsuarioController {
 		return "usuarios";
 	}
 	
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/usuarios/{id}")
 	public String mostrarUsuario(Model model, @PathVariable long id) {
 
 		Optional<Usuario> usuario = usuarioService.findById(id);
@@ -129,7 +151,7 @@ public class UsuarioController {
 	public String guardarUsuario(Model model, @RequestParam String id, @RequestParam String nombre, @RequestParam String pass) {
 		Usuario usuario = new Usuario(Long.parseLong(id), nombre, pass);
 		usuarioService.save(usuario);
-		return "/mostrarUsuarios";
+		return "/usuarios";
 	}
 	
 	@GetMapping("/borrarUsuario/{id}")
@@ -157,101 +179,11 @@ public class UsuarioController {
 	@RequestMapping("/actualizarUsuario/{id}")
 	public String actualizarUsuario(Model model, @PathVariable long id, @RequestParam String nombre, @RequestParam String pass) {
 		Usuario usuario = usuarioService.findById(id).get();
-		usuario.setNombre(nombre);
-		usuario.setContraseña(pass);
+		usuario.setName(nombre);
+		usuario.setPassword(pass);
 		usuarioService.save(usuario);
-		return "redirect:/usuario/"+usuario.getId();
+		return "redirect:/usuarios/"+usuario.getId();
 	}
 	
 	
-	
-	@GetMapping("/usuario/{id}/nuevoHilo")
-	public String nuevoHilo(Model model, @PathVariable long id) {
-		model.addAttribute("id", id);
-		return "nuevoHilo";
-	}
-	
-	@RequestMapping("/usuario/{id}/guardarHilo")
-	public String guardarHilo(Model model, @PathVariable long id, @RequestParam String titulo, @RequestParam String descripcion) {
-		Usuario usuario = usuarioService.findById(id).get();
-		Hilo hilo = new Hilo(id, titulo, descripcion);
-		usuario.getHilos().add(hilo);
-		usuarioService.save(usuario);
-		
-		return "redirect:/usuario/"+usuario.getId();
-	}
-	
-	@GetMapping("/usuario/{idUsuario}/hilo/{idHilo}/nuevoMensaje")
-	public String nuevoMensaje(Model model, @PathVariable long idUsuario, @PathVariable long idHilo) {
-		model.addAttribute("idUsuario", idUsuario);
-		model.addAttribute("idHilo", idHilo);
-		return "nuevoMensaje";
-	}
-	
-	@RequestMapping("/usuario/{idUsuario}/hilo/{idHilo}/guardarMensaje")
-	public String guardarMensaje(Model model, @PathVariable long idUsuario, @PathVariable int idHilo, @RequestParam String texto) {
-		Usuario usuario = usuarioService.findById(idUsuario).get();
-		Hilo hilo = null;
-		for(Hilo h : usuario.getHilos()) {
-			if (h.getId()==idHilo) {
-				hilo = h;
-				break;
-			}
-			
-		}
-		
-		Mensaje mensaje = new Mensaje(texto);
-		hilo.getListaMensajes().add(mensaje);
-		usuario.getMensajes().add(mensaje);
-		usuarioService.save(usuario);
-		
-		return "redirect:/usuario/"+usuario.getId();
-	}
-	
-	@GetMapping("/usuario/{id}/nuevaJaula")
-	public String nuevaJaula(Model model, @PathVariable long id) {
-		model.addAttribute("id", id);
-		return "nuevaJaula";
-	}
-	
-	@RequestMapping("/usuario/{id}/guardarJaula")
-	public String guardarJaula(Model model, @PathVariable long id, @RequestParam String nombre) {
-		Usuario usuario = usuarioService.findById(id).get();
-		Jaula jaula = new Jaula(id, nombre);
-		usuario.getJaulas().add(jaula);
-		usuarioService.save(usuario);
-		
-		return "redirect:/usuario/"+usuario.getId();
-	}
-	
-	@GetMapping("/usuario/{idUsuario}/jaula/{idJaula}/nuevoPajaro")
-	public String nuevoPajaro(Model model, @PathVariable long idUsuario, @PathVariable long idJaula) {
-		model.addAttribute("idUsuario", idUsuario);
-		model.addAttribute("idJaula", idJaula);
-		return "nuevoPajaro";
-	}
-	
-	@RequestMapping("/usuario/{idUsuario}/jaula/{idJaula}/guardarPajaro")
-	public String guardarPajaro(Model model, @PathVariable long idUsuario, @PathVariable int idJaula, @RequestParam String idPajaro, @RequestParam String especie, @RequestParam String apuntes) {
-		Usuario usuario = usuarioService.findById(idUsuario).get();
-		Jaula jaula = null;
-		
-		if(idJaula!=-1) {
-			for(Jaula j : usuario.getJaulas()) {
-				if (j.getId()==idJaula) {
-					jaula = j;
-					break;
-				}	
-			}	
-		}
-		Pajaro pajaro = new Pajaro(Long.parseLong(idPajaro), especie, jaula, apuntes);
-		if(idJaula!=-1) {
-			jaula.getPajaros().add(pajaro);
-		}
-		
-		usuario.getPajaros().add(pajaro);
-		usuarioService.save(usuario);
-		
-		return "redirect:/usuario/"+usuario.getId();
-	}
 }

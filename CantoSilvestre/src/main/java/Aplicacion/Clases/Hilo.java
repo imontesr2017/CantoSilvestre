@@ -16,8 +16,6 @@ public class Hilo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private Long usuario;
-	
 	private String titulo;
 	
 	private String descripcion;
@@ -28,8 +26,7 @@ public class Hilo {
 
 	protected Hilo() {}
 	
-	public Hilo(long usuario, String titulo, String descripcion) {
-		this.usuario = usuario;
+	public Hilo(String titulo, String descripcion) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 	}
