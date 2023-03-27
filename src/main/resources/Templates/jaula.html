@@ -1,0 +1,22 @@
+{{>header}}
+
+<div>
+  <h2>"{{jaula.id}}"</h2>
+  
+  <div>
+    <p>{{jaula.nombre}}</p>
+  </div>
+  
+  <div>
+    <ul>
+      {{#jaula.pajaros}}
+      <li>
+        {{this}}
+      </li>
+      {{/jaula.pajaros}}
+    </ul>
+  </div>
+  
+</div>
+
+{{>footer}}
