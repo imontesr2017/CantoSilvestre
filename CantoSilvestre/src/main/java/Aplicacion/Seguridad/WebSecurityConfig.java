@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/jaula/{idJaula}/guardarPajaro").hasAnyRole("USER");
         
         
-        http.authorizeRequests().antMatchers("/mostrarUsuarios").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/usuarios").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/nuevoUsuario").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/guardarUsuario").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/borrarUsuario/{id}").hasAnyRole("ADMIN");
@@ -68,5 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
+        
+        //http.csrf().disable();
     }
 }

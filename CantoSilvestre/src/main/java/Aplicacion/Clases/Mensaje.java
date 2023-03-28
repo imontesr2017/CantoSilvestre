@@ -33,7 +33,7 @@ public class Mensaje {
 
 	@Override
 	public String toString() {
-		return ": "+texto;
+		return texto;
 	}
 
 	public void setId(long id) {

@@ -1,9 +1,14 @@
 package Aplicacion.Controladores;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,22 +37,39 @@ public class PajaroController {
 	@Autowired
 	private PajaroService pajaroService;
 	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			Usuario usuario = usuarioService.findByName(principal.getName()).get();
+			model.addAttribute("userId", usuario.getId());
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
+	
 	@RequestMapping("/borrarPajaro/{idPajaro}")
 	public String borrarPajaro(Model model, @PathVariable long idPajaro) {
 		pajaroService.delete(idPajaro);
-		return "/";
+		return "/usuarios/"+model.getAttribute("userId");
 	}
 	
 	@GetMapping("/jaula/{idJaula}/nuevoPajaro")
 	public String nuevoPajaro(Model model, @PathVariable long idJaula) {
-		model.addAttribute("idUsuario", (long) model.getAttribute("userId"));
 		model.addAttribute("idJaula", idJaula);
 		return "nuevoPajaro";
 	}
 	
 	@RequestMapping("/jaula/{idJaula}/guardarPajaro")
 	public String guardarPajaro(Model model, @PathVariable int idJaula, @RequestParam String idPajaro, @RequestParam String especie, @RequestParam String apuntes) {
-		Usuario usuario = usuarioService.findById((long) model.getAttribute("userId")).get();
+		Usuario usuario = usuarioService.findById((Long) model.getAttribute("userId")).get();
 		Jaula jaula = null;
 		
 		if(idJaula!=-1) {

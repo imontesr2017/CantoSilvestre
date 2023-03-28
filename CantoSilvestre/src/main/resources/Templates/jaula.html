@@ -12,10 +12,12 @@
       {{#jaula.pajaros}}
       <li>
         {{this}}
+        <button onclick="location.href='/borrarPajaro/{{id}}'">X</button>
       </li>
       {{/jaula.pajaros}}
     </ul>
   </div>
+  <button onclick="location.href='/jaula/{{jaula.id}}/nuevoPajaro'">Nuevo Pajaro</button>
   
 </div>
 

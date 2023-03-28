@@ -1,11 +1,15 @@
 package Aplicacion.Controladores;
 
+import java.security.Principal;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +37,24 @@ public class JaulaController {
 	private JaulaService jaulaService;
 	@Autowired
 	private PajaroService pajaroService;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			Usuario usuario = usuarioService.findByName(principal.getName()).get();
+			model.addAttribute("userId", usuario.getId());
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 	
 	@GetMapping("/jaulas")
 	public String mostrarJaulas(Model model) {
@@ -63,13 +85,12 @@ public class JaulaController {
 	
 	@GetMapping("nuevaJaula")
 	public String nuevaJaula(Model model) {
-		model.addAttribute("id", (long) model.getAttribute("userId"));
 		return "nuevaJaula";
 	}
 	
 	@RequestMapping("guardarJaula")
 	public String guardarJaula(Model model, @RequestParam String nombre) {
-		Usuario usuario = usuarioService.findById((long) model.getAttribute("userId")).get();
+		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		Jaula jaula = new Jaula(usuario.getId(), nombre);
 		usuario.getJaulas().add(jaula);
 		usuarioService.save(usuario);

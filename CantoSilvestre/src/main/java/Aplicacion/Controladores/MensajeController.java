@@ -1,9 +1,14 @@
 package Aplicacion.Controladores;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +38,24 @@ public class MensajeController {
 	@Autowired
 	private PajaroService pajaroService;
 	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			Usuario usuario = usuarioService.findByName(principal.getName()).get();
+			model.addAttribute("userId", usuario.getId());
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
+	
 	@RequestMapping("/borrarMensaje/{idMensaje}")
 	public String borrarMensaje(Model model, @PathVariable long idMensaje) {
 		mensajeService.delete(idMensaje);
@@ -47,7 +70,7 @@ public class MensajeController {
 	
 	@RequestMapping("/hilo/{idHilo}/guardarMensaje")
 	public String guardarMensaje(Model model, @PathVariable int idHilo, @RequestParam String texto) {
-		Usuario usuario = usuarioService.findById((long) model.getAttribute("userId")).get();
+		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		Hilo hilo = null;
 		for(Hilo h : usuario.getHilos()) {
 			if (h.getId()==idHilo) {
@@ -61,6 +84,6 @@ public class MensajeController {
 		hilo.getListaMensajes().add(mensaje);
 		usuario.getMensajes().add(mensaje);
 		usuarioService.save(usuario);
-		return "redirect:/usuarios/"+usuario.getId();
+		return "redirect:/hilo/"+idHilo;
 	}
 }

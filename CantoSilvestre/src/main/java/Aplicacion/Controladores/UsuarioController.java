@@ -33,6 +33,7 @@ import Aplicacion.Service.UsuarioService;
 @Controller
 public class UsuarioController {
 
+	
 
 	//Servicios de acceso a la base de datos
 	@Autowired
@@ -59,9 +60,9 @@ public class UsuarioController {
 
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
-			Usuario p = (Usuario) principal;
-			model.addAttribute("userId", p.getId());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			Usuario usuario = usuarioService.findByName(principal.getName()).get();
+			model.addAttribute("userId", usuario.getId());
 
 		} else {
 			model.addAttribute("logged", false);
@@ -88,8 +89,8 @@ public class UsuarioController {
 		Hilo hilo2 = new Hilo("Como alimento a mis pajaros?", "¿no sé que pienso deberia dar a mis pajaros?");
 		Hilo hilo3 = new Hilo("Vendo jaulas", "");
 		
-		Mensaje mensaje1 = new Mensaje("solo me quedan dos");
-		Mensaje mensaje2 = new Mensaje("Hola estoy interesada en el cambio");
+		Mensaje mensaje1 = new Mensaje("Pepe: solo me quedan dos");
+		Mensaje mensaje2 = new Mensaje("Marta: Hola estoy interesada en el cambio");
 		
 		hilo1.getListaMensajes().add(mensaje1);
 		hilo1.getListaMensajes().add(mensaje2);
@@ -151,7 +152,7 @@ public class UsuarioController {
 	public String guardarUsuario(Model model, @RequestParam String id, @RequestParam String nombre, @RequestParam String pass) {
 		Usuario usuario = new Usuario(Long.parseLong(id), nombre, pass);
 		usuarioService.save(usuario);
-		return "/usuarios";
+		return "/usuarios/"+usuario.getId();
 	}
 	
 	@GetMapping("/borrarUsuario/{id}")

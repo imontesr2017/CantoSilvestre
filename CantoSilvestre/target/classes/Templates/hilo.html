@@ -12,14 +12,15 @@
       {{#hilo.listaMensajes}}
       <li>
         {{this}}
-        <button onclick="location.href='/borrarMensaje/{{id}}'">X</button>
       </li>
       {{/hilo.listaMensajes}}
     </ul>
   </div>
-  <button onclick="location.href='/usuario/{{hilo.usuario}}/hilo/{{hilo.id}}/nuevoMensaje'">nuevoMensaje</button>
-  <button onclick="location.href='/editarHilo/{{id}}'">Editar</button>
-  <button onclick="location.href='/borrarHilo/{{id}}'">Borrar Hilo</button>
+  
+  <button onclick="location.href='/hilo/{{hilo.id}}/nuevoMensaje'">Nuevo Mensaje</button>
+  
+ 
+
 
 </div>
 

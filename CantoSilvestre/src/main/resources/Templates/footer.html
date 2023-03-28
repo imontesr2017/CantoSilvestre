@@ -7,7 +7,9 @@
 	
 {{/logged}} {{#logged}}
 	<button onclick="location.href='/usuarios/{{userId}}'">Perfil</button>
-	<button onclick="location.href='/usuarios'">Usuarios</button>
+	{{#admin}}
+		<button onclick="location.href='/usuarios'">Usuarios</button>
+	{{/admin}}
 {{/logged}}
 
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Aplicacion.Clases.Hilo;
 import Aplicacion.Clases.Usuario;
 import Aplicacion.Repositorios.UsuarioRepository;
 
@@ -32,5 +33,10 @@ public class UsuarioService {
 
 	public void delete(long id) {
 		usuarios.deleteById(id);
+	}
+
+	public Optional<Usuario> findByName(String name) {
+		Optional<Usuario> usuario = usuarios.findByName(name);
+		return usuario;
 	}
 }

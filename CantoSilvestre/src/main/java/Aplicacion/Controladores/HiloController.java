@@ -1,11 +1,15 @@
 package Aplicacion.Controladores;
 
+import java.security.Principal;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +36,24 @@ public class HiloController {
 	private JaulaService jaulaService;
 	@Autowired
 	private PajaroService pajaroService;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userName", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			Usuario usuario = usuarioService.findByName(principal.getName()).get();
+			model.addAttribute("userId", usuario.getId());
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 	
 	@GetMapping("/")
 	public String mostrarHilos(Model model) {
@@ -67,7 +89,7 @@ public class HiloController {
 	
 	@RequestMapping("/guardarHilo")
 	public String guardarHilo(Model model, @RequestParam String titulo, @RequestParam String descripcion) {
-		Usuario usuario = usuarioService.findById((long) model.getAttribute("userId")).get();
+		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		Hilo hilo = new Hilo(titulo, descripcion);
 		usuario.getHilos().add(hilo);
 		usuarioService.save(usuario);
@@ -85,7 +107,7 @@ public class HiloController {
 		Hilo hilo = hiloService.findById(id).get();
 		hilo.setTitulo(titulo);
 		hilo.setDescripcion(descripcion);
-		Usuario usuario = usuarioService.findById((long) model.getAttribute("userId")).get();
+		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		usuario.getHilos().add(hilo);
 		usuarioService.save(usuario);
 		return "redirect:/hilos/"+hilo.getId();

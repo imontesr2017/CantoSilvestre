@@ -6,6 +6,8 @@
 			<li><a href="/hilos/{{id}}">{{titulo}}</a>
 			{{/hilos}}
 		</ul>
-		
+		{{#logged}}
+		 	<button onclick="location.href='/nuevoHilo'">Crear Hilo</button>
+		{{/logged}}
 
 {{>footer}}

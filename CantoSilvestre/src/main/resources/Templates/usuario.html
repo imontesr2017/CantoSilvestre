@@ -16,27 +16,26 @@
     </ul>
   </div>
   
-  <button onclick="location.href='/usuario/{{usuario.id}}/jaula/-1/nuevoPajaro'">Nuevo Pajaro</button>
+  <button onclick="location.href='/jaula/-1/nuevoPajaro'">Nuevo Pajaro</button>
   
   <h3>Jaulas</h3>
     <div>
     <ul>
       {{#usuario.jaulas}}
       <li>
-        <a href="/usuario/{{usuario}}/jaulas/{{id}}">{{nombre}}</a>
+        <a href="/jaulas/{{id}}">{{nombre}}</a>
         <button onclick="location.href='/borrarJaula/{{id}}'">X</button>
       </li>
       {{/usuario.jaulas}}
     </ul>
   </div>
-  <button onclick="location.href='/usuario/{{usuario.id}}/nuevaJaula'">Crear Jaula</button>
+  <button onclick="location.href='/nuevaJaula'">Crear Jaula</button>
   
   <h3>Mensajes</h3>
     <div>
     <ul>
       {{#usuario.mensajes}}
       <li>
-      	{{usuario.nombre}}
         {{this}}
         <button onclick="location.href='/borrarMensaje/{{id}}'">X</button>
       </li>
@@ -49,18 +48,17 @@
     <ul>
       {{#usuario.hilos}}
       <li>
-        <a href="/usuario/{{usuario}}/hilos/{{id}}">{{titulo}}</a>
+        <a href="/hilos/{{id}}">{{titulo}}</a>
         <button onclick="location.href='/editarHilo/{{id}}'">Editar</button>
         <button onclick="location.href='/borrarHilo/{{id}}'">X</button>
       </li>
       {{/usuario.hilos}}
     </ul>
-  </div>
-  
-  
-  <button onclick="location.href='/usuario/{{usuario.id}}/nuevoHilo'">Crear Hilo</button>
-  	<button onclick="location.href='/editarUsuario/{{usuario.id}}'">Editar Cuenta</button>
-	<button onclick="location.href='/borrarUsuario/{{usuario.id}}'">Eliminar Cuenta</button>
+  </div> 
+  <button onclick="location.href='/nuevoHilo'">Crear Hilo</button>
+  	{{#admin}}
+		<button onclick="location.href='/borrarUsuario/{{usuario.id}}'">Eliminar Cuenta</button>
+	{{/admin}}
 </div>
 
 {{>footer}}
