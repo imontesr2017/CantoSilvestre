@@ -84,6 +84,6 @@ public class MensajeController {
 		hilo.getListaMensajes().add(mensaje);
 		usuario.getMensajes().add(mensaje);
 		usuarioService.save(usuario);
-		return "redirect:/hilo/"+idHilo;
+		return "redirect:/hilos/"+idHilo;
 	}
 }

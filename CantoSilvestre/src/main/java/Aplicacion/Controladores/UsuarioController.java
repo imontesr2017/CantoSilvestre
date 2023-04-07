@@ -150,6 +150,9 @@ public class UsuarioController {
 	
 	@RequestMapping("/guardarUsuario")
 	public String guardarUsuario(Model model, @RequestParam String id, @RequestParam String nombre, @RequestParam String pass) {
+		if (!usuarioService.findById(Long.parseLong(id)).isEmpty()) {
+			return "usuarioExistente";
+		}
 		Usuario usuario = new Usuario(Long.parseLong(id), nombre, pass);
 		usuarioService.save(usuario);
 		return "/usuarios/"+usuario.getId();

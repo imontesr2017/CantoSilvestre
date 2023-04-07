@@ -1,6 +1,8 @@
 package Aplicacion.Controladores;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import Aplicacion.Clases.Jaula;
 import Aplicacion.Clases.Pajaro;
@@ -72,6 +79,12 @@ public class PajaroController {
 		Usuario usuario = usuarioService.findById((Long) model.getAttribute("userId")).get();
 		Jaula jaula = null;
 		
+		
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "http://localhost:8080/usuarios/" + usuario.getId();
+		String data = restTemplate.getForObject(url, String.class);
+		
+		
 		if(idJaula!=-1) {
 			for(Jaula j : usuario.getJaulas()) {
 				if (j.getId()==idJaula) {
@@ -80,7 +93,7 @@ public class PajaroController {
 				}	
 			}	
 		}
-		Pajaro pajaro = new Pajaro(Long.parseLong(idPajaro), especie, jaula, apuntes);
+		Pajaro pajaro = new Pajaro(Long.parseLong(idPajaro), data, jaula, apuntes);
 		if(idJaula!=-1) {
 			jaula.getPajaros().add(pajaro);
 		}
