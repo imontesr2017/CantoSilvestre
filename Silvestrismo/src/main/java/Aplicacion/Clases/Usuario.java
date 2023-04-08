@@ -23,12 +23,13 @@ public class Usuario {
 	@Id
 	private long id;
 	
-	private int pajaros;
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+	private List<Pajaro> pajaros = new LinkedList<Pajaro>();
 	
 	protected Usuario() {
 	}
 	
-	public Usuario(long id, int pajaros) {
+	public Usuario(long id, List<Pajaro> pajaros) {
 		this.id = id;
 		this.pajaros = pajaros;
 	}
@@ -41,11 +42,11 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public int getPajaros() {
+	public List<Pajaro> getPajaros() {
 		return pajaros;
 	}
 
-	public void setPajaros(int pajaros) {
+	public void setPajaros(List<Pajaro> pajaros) {
 		this.pajaros = pajaros;
 	}
 
