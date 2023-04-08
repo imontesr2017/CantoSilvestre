@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import Aplicacion.Clases.Hilo;
@@ -80,10 +81,10 @@ public class UsuarioController {
 		Jaula jaulaAdultos = new Jaula(marta.getId(),"Competicion");
 		Jaula jaulaMama = new Jaula(marta.getId(), "Para mama");
 		
-		Pajaro pajaro1 = new Pajaro(1, "Jilguero", jaulaCrianza);
-		Pajaro pajaro2 = new Pajaro(2, "Canario", null);
-		Pajaro pajaro3 = new Pajaro(3, "Jilguero", jaulaAdultos, "Preparado para competición");
-		Pajaro pajaro4 = new Pajaro(4, "Jilguero", jaulaCrianza, "Para cria");
+		Pajaro pajaro1 = new Pajaro(11, "Jilguero", jaulaCrianza);
+		Pajaro pajaro2 = new Pajaro(22, "Canario", null);
+		Pajaro pajaro3 = new Pajaro(23, "Jilguero", jaulaAdultos, "Preparado para competición");
+		Pajaro pajaro4 = new Pajaro(14, "Jilguero", jaulaCrianza, "Para cria");
 		
 		Hilo hilo1 = new Hilo("Cambio jilguero por canario", "Hola tengo 3 jilgueros para cria y me gustaria 3 canarios para cria");
 		Hilo hilo2 = new Hilo("Como alimento a mis pajaros?", "¿no sé que pienso deberia dar a mis pajaros?");
@@ -143,6 +144,15 @@ public class UsuarioController {
 
 	}
 	
+	@GetMapping("/perfil")
+	public String perfil(Model model) {
+
+		Optional<Usuario> usuario = usuarioService.findById((long) model.getAttribute("userId"));
+		model.addAttribute("usuario", usuario.get());
+		return "usuario";
+
+	}
+	
 	@GetMapping("/nuevoUsuario")
 	public String nuevoUsuario(Model model) {
 		return "nuevoUsuario";
@@ -152,6 +162,13 @@ public class UsuarioController {
 	public String guardarUsuario(Model model, @RequestParam String id, @RequestParam String nombre, @RequestParam String pass) {
 		if (!usuarioService.findById(Long.parseLong(id)).isEmpty()) {
 			return "usuarioExistente";
+		}
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "http://localhost:8080/usuarios/" + id;
+		Boolean valido = restTemplate.getForObject(url, Boolean.class);
+		
+		if (!valido) {
+			return "idUsuarioInvalido";
 		}
 		Usuario usuario = new Usuario(Long.parseLong(id), nombre, pass);
 		usuarioService.save(usuario);

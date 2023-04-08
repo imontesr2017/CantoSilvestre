@@ -79,7 +79,7 @@ public class HiloController {
 	@RequestMapping("/borrarHilo/{idHilo}")
 	public String borrarHilo(Model model, @PathVariable long idHilo) {
 		hiloService.delete(idHilo);
-		return "/";
+		return "/perfil";
 	}
 	
 	@GetMapping("/nuevoHilo")
@@ -94,7 +94,7 @@ public class HiloController {
 		usuario.getHilos().add(hilo);
 		usuarioService.save(usuario);
 		
-		return "redirect:/usuarios/"+usuario.getId();
+		return "redirect:/perfil";
 	}
 	
 	@GetMapping("/editarHilo/{id}")

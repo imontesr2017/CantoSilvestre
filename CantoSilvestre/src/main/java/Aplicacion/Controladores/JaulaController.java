@@ -80,22 +80,22 @@ public class JaulaController {
 	@RequestMapping("/borrarJaula/{idJaula}")
 	public String borrarJaula(Model model, @PathVariable long idJaula) {
 		jaulaService.delete(idJaula);
-		return "/mostrarJaulas";
+		return "redirect:/perfil";
 	}
 	
-	@GetMapping("nuevaJaula")
+	@GetMapping("/nuevaJaula")
 	public String nuevaJaula(Model model) {
 		return "nuevaJaula";
 	}
 	
-	@RequestMapping("guardarJaula")
+	@RequestMapping("/guardarJaula")
 	public String guardarJaula(Model model, @RequestParam String nombre) {
 		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		Jaula jaula = new Jaula(usuario.getId(), nombre);
 		usuario.getJaulas().add(jaula);
 		usuarioService.save(usuario);
 		
-		return "redirect:/usuario/"+usuario.getId();
+		return "redirect:/perfil";
 	}
 	
 }

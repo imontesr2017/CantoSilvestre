@@ -59,7 +59,7 @@ public class MensajeController {
 	@RequestMapping("/borrarMensaje/{idMensaje}")
 	public String borrarMensaje(Model model, @PathVariable long idMensaje) {
 		mensajeService.delete(idMensaje);
-		return "/";
+		return "/perfil";
 	}
 	
 	@GetMapping("/hilo/{idHilo}/nuevoMensaje")

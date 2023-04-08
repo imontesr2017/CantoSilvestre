@@ -65,7 +65,7 @@ public class PajaroController {
 	@RequestMapping("/borrarPajaro/{idPajaro}")
 	public String borrarPajaro(Model model, @PathVariable long idPajaro) {
 		pajaroService.delete(idPajaro);
-		return "/usuarios/"+model.getAttribute("userId");
+		return "/perfil";
 	}
 	
 	@GetMapping("/jaula/{idJaula}/nuevoPajaro")
@@ -81,10 +81,14 @@ public class PajaroController {
 		
 		
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:8080/usuarios/" + usuario.getId();
-		String data = restTemplate.getForObject(url, String.class);
-		
-		
+		String url = "http://localhost:8080/usuarios/" + usuario.getId()+"/pajaro/"+idPajaro;
+		Boolean valido = restTemplate.getForObject(url, Boolean.class);
+		if (!valido) {
+			return "idPajaroInvalido";
+		}
+		if(!pajaroService.findById(Long.parseLong(idPajaro)).isEmpty()) {
+			return "idPajaroExistente";
+		}
 		if(idJaula!=-1) {
 			for(Jaula j : usuario.getJaulas()) {
 				if (j.getId()==idJaula) {
@@ -93,7 +97,7 @@ public class PajaroController {
 				}	
 			}	
 		}
-		Pajaro pajaro = new Pajaro(Long.parseLong(idPajaro), data, jaula, apuntes);
+		Pajaro pajaro = new Pajaro(Long.parseLong(idPajaro), especie, jaula, apuntes);
 		if(idJaula!=-1) {
 			jaula.getPajaros().add(pajaro);
 		}
@@ -101,6 +105,6 @@ public class PajaroController {
 		usuario.getPajaros().add(pajaro);
 		usuarioService.save(usuario);
 		
-		return "redirect:/usuarios/"+usuario.getId();
+		return "redirect:/perfil";
 	}
 }

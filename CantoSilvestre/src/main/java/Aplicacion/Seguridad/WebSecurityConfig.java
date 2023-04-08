@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/logout").permitAll();
 
         // Private pages
-        http.authorizeRequests().antMatchers("/usuarios/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/perfil").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/nuevoHilo").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/guardarHilo").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/hilo/{idHilo}/nuevoMensaje").hasAnyRole("USER");
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/jaula/{idJaula}/nuevoPajaro").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/jaula/{idJaula}/guardarPajaro").hasAnyRole("USER");
         
-        
+        http.authorizeRequests().antMatchers("/usuarios/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/usuarios").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/nuevoUsuario").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/guardarUsuario").hasAnyRole("ADMIN");
