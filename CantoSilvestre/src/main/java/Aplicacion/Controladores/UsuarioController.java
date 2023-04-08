@@ -133,7 +133,7 @@ public class UsuarioController {
 	
 	@GetMapping("/usuarios/{id}")
 	public String mostrarUsuario(Model model, @PathVariable long id) {
-
+		model.addAttribute("propietario", id==(long) model.getAttribute("userId"));
 		Optional<Usuario> usuario = usuarioService.findById(id);
 		if (usuario.isPresent()) {
 			model.addAttribute("usuario", usuario.get());
@@ -146,7 +146,7 @@ public class UsuarioController {
 	
 	@GetMapping("/perfil")
 	public String perfil(Model model) {
-
+		model.addAttribute("propietario", true);
 		Optional<Usuario> usuario = usuarioService.findById((long) model.getAttribute("userId"));
 		model.addAttribute("usuario", usuario.get());
 		return "usuario";
