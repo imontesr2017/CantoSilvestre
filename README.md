@@ -58,6 +58,21 @@ Diagrama UML
 
 ![imagen](https://user-images.githubusercontent.com/85401502/221797626-9c3b09c0-e9cf-4a89-97b4-892dc9a15ea7.png)
 
+Definición de la interfaz entre el servicio y la aplicación web:
+El servicio constiste en una base de datos gubernamental en la que se encuentran almacenados los datos de los Españoles con licencia de silvestrismo.
+A cada una de estas licencias se le asignan una lista de identificadores únicos (anillas), que deben colocarse en las patas de los pajaros capturados para identificarlos.
+No se pueden capturar un número de pájaros superior al número de anillas que se le asigna a la persona. Tampoco pueden capturarse pájaros sin una licencia de Silvestrismo, es una práctica ilegal.
+El servicio interno permite saber si un id de usuario es real y tiene una licencia de Silvestrismo. Esta utilidad sirve para que la aplicación web solo admita a usuarios con licencia de silvestrismo.
+
+  @GetMapping("/usuarios/{id}")
+	public Boolean UsuarioCorrecto(Model model, @PathVariable String id)
+  
+Además, el servicio también permite saber si una anilla pertenece a un usuario concreto. Esta utilidad se aplica cuando un usuario quiere guardar un pajaro en el sistema. El sistema comprobará si la anilla del pájaro pertenece a ese usuario.
+
+  @GetMapping("/usuarios/{id}/pajaro/{etiqueta}")
+	public Boolean PajaroCorrecto(Model model, @PathVariable String id, @PathVariable String etiqueta)
+
+
 Como instalar la aplicación en una máquina limpia.
 
 Paso 1: Instalar java.
@@ -68,14 +83,11 @@ Abra la pagina oficial de java (ejemplo linux) https://www.java.com/es/download/
 Paso2: Instalar y configurar MySQL.
 
 Instale MySQL en su máquina. En caso de ser una máquina con SO tipo linux, ejecute la siguiente linea en la consola de comandos "sudo apt install mysql-server"
-A continuación vamos a configurar la seguridad de MySQL con "sudo mysql_secure_installation"
-
-Introduzca "Y" para cambiar la contraseña.
-La contraseña introducida deberá ser cambiada en el archivo .properties de los programas. Usa "pass" por defecto.
 
 Utilize el siguiente comando para instalar la interfaz gráfica.
 $ sudo apt-get install mysql-workbench
 
+Abre la interfaz gráfica.
 Crea una conexión con el nombre "CantoSilvestre" en localhost con puerto 3306.
 
 Paso 3: Descarga el proyecto.
