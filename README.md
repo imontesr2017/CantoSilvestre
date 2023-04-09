@@ -86,9 +86,9 @@ Descargalo y descomprimelo.
 Paso 4: Genera los jar
 Utiliza el comando "sudo apt install maven"
 
-Después ejecuta los siguientes comandos en sus co carpeta donde tengas los proyectos.
-mvn CantoSilvestre
-mvn Silvestrismo
+Después ejecuta los siguientes comandos en sus las carpetas de los proyectos.
+mvn clean install
+
 
 
 
