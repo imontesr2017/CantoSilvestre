@@ -58,3 +58,37 @@ Diagrama UML
 
 ![imagen](https://user-images.githubusercontent.com/85401502/221797626-9c3b09c0-e9cf-4a89-97b4-892dc9a15ea7.png)
 
+Como instalar la aplicación en una máquina limpia.
+
+Paso 1: Instalar java.
+
+En el caso de que Java no este instalado en la máquina busque en su navegador "descargar java" + nombre de su sistema operativo.
+Abra la pagina oficial de java (ejemplo linux) https://www.java.com/es/download/help/linux_x64_install.html y siga las intrucciones de instalación.
+
+Paso2: Instalar y configurar MySQL.
+
+Instale MySQL en su máquina. En caso de ser una máquina con SO tipo linux, ejecute la siguiente linea en la consola de comandos "sudo apt install mysql-server"
+A continuación vamos a configurar la seguridad de MySQL con "sudo mysql_secure_installation"
+
+Introduzca "Y" para cambiar la contraseña.
+La contraseña introducida deberá ser cambiada en el archivo .properties de los programas. Usa "pass" por defecto.
+
+Utilize el siguiente comando para instalar la interfaz gráfica.
+$ sudo apt-get install mysql-workbench
+
+Crea una conexión con el nombre "CantoSilvestre" en localhost con puerto 3306.
+
+Paso 3: Descarga el proyecto.
+
+Enlace al proyecto en gitHub: https://github.com/imontesr2017/CantoSilvestre
+Descargalo y descomprimelo.
+
+Paso 4: Genera los jar
+Utiliza el comando "sudo apt install maven"
+
+Después ejecuta los siguientes comandos en sus co carpeta donde tengas los proyectos.
+mvn CantoSilvestre
+mvn Silvestrismo
+
+
+
