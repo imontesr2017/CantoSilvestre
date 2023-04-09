@@ -16,38 +16,71 @@ Si los datos no coinciden se envia un mensaje de alerta al admin.
 
 Capturas de pantalla de las ventanas:
 
-![imagen](https://user-images.githubusercontent.com/85401502/223197358-7fb2122a-2110-4db4-9adf-05f5e38fc23d.png)
-Página con los hilos de mensajes del foro y botón para crear nuevos hilos.
+Vista de un usuario no registrado.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223197811-5f235a3a-2d07-4d91-a6a1-1cd3bc3d80f5.png)
+![imagen](https://user-images.githubusercontent.com/85401502/230796909-ffb970c1-a681-4f7d-adda-19b8bcddaa41.png)
+
+Página con los hilos de mensajes del foro. También puedes hacer login en la parte superior.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230796949-480cdf37-aee5-4101-b7c0-50ec2415f3cd.png)
+
+Página de un hilo. También puedes hacer login en la parte superior.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230796976-7517a847-d2a7-468c-b223-97ddfe407b17.png)
+
+Página de login incorrecto.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797006-d647fae5-3847-4bf8-a5a7-73abd35269c7.png)
+
+Página de login.
+
+Vista de usuario registrado (no administrador).
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797044-0ba7883e-ad8a-461f-a97f-cfd95c7c30df.png)
+
+Página con los hilos de mensajes del foro. También puedes desloguearte en la parte superior.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797168-7ccd64d1-7499-4ce8-86d0-ed1464d5b761.png)
+
 Página de un hilo.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223198075-a8f7404a-084a-4a85-b86d-de0bcf2d2546.png)
+![imagen](https://user-images.githubusercontent.com/85401502/230797194-773a1170-e471-4eb9-9402-381657ead261.png)
+
 Página para añadir un mensaje.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223199147-30bedae0-9b61-43cb-80e5-56f84d40c4e9.png)
-Página con los usuarios de la aplicación.
+![imagen](https://user-images.githubusercontent.com/85401502/230797244-b3a311ec-9e60-464c-a7a2-e818678b5fce.png)
 
-![imagen](https://user-images.githubusercontent.com/85401502/223198851-67455ae2-a16a-49f4-9483-110b3069f3c8.png)
 Página de un usuario.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223199641-0980aa95-0ad8-4650-97a3-4d6d3491df27.png)
-Página nuevo usuario.
+![imagen](https://user-images.githubusercontent.com/85401502/230797289-d89f6863-071c-4e09-a978-a4a93258078c.png)
 
-![imagen](https://user-images.githubusercontent.com/85401502/223199910-53e891a4-c994-43d6-853e-2253fd20a149.png)
-Página con las jaulas de la aplicación.
+Página para añadir un pájaro nuevo.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223200314-812a7242-f35e-471e-be5e-d9efacb9892d.png)
-Página de una jaula.
+![imagen](https://user-images.githubusercontent.com/85401502/230797325-72a963c9-df43-464b-8d5a-196fe6001cac.png)
 
-![imagen](https://user-images.githubusercontent.com/85401502/223200657-75e28325-7745-43de-bfdb-ae1e3a703d2e.png)
-Página para añadir un pájaro nuevo a la jaula.
-
-![imagen](https://user-images.githubusercontent.com/85401502/223203699-c7a02188-f657-42b0-9c13-e0ea8ae4ff7c.png)
 Página para añadir una jaula.
 
-![imagen](https://user-images.githubusercontent.com/85401502/223204217-5467f847-85f9-4366-a85e-f851d538cf7b.png)
+![imagen](https://user-images.githubusercontent.com/85401502/230797343-49537e49-a8cb-4d1d-bb77-d207e0ad50c1.png)
+
+Página de una jaula.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797374-d2b77eb5-7ce1-4137-8ea9-e3c8ee5378b8.png)
+
 Página para añadir un hilo.
+
+Vista de administrador.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797408-4133f618-1862-4df1-9b81-b65c91e6c35b.png)
+
+Página del foro.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797433-88936d85-a4c6-47c6-b7fb-8a5c5b50fe64.png)
+
+Página con los usuarios de la aplicación.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230797442-23d1f8ce-ff84-4917-9cd5-f65027785920.png)
+
+Página nuevo usuario.
 
 
 Diagrama de navegación
