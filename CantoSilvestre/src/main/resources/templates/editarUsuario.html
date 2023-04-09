@@ -1,0 +1,13 @@
+<html>
+<body>
+	<form action="/actualizarUsuario/{{usuario.id}}">
+
+	<p>Tu nombre antiguo es {{usuario.nombre}}, inserta el nuevo:</p>
+	<input type='text' name='nombre'/>
+	<p>Tu contraseña antigua es {{usuario.contrasena}}, inserta la nueva:</p>
+	<input type='text' name='pass'/>
+	
+	<input type='submit' value='Enviar'/>
+	</form>
+</body>
+</html>

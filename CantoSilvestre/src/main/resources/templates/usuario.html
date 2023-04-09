@@ -1,0 +1,74 @@
+{{>header}}
+
+<div>
+  <h2>"{{usuario.name}}"</h2>
+  
+  <h3>Pajaros</h3>
+    <div>
+    <ul>
+      {{#usuario.pajaros}}
+      <li>
+      	
+        {{this}}
+        {{#propietario}}
+        <button onclick="location.href='/borrarPajaro/{{id}}'">X</button>
+        {{/propietario}}
+      </li>
+      {{/usuario.pajaros}}
+    </ul>
+  </div>
+  {{#propietario}}
+  <button onclick="location.href='/jaula/-1/nuevoPajaro'">Nuevo Pajaro</button>
+  {{/propietario}}
+  <h3>Jaulas</h3>
+    <div>
+    <ul>
+      {{#usuario.jaulas}}
+      <li>
+        <a href="/jaulas/{{id}}">{{nombre}}</a>
+        {{#propietario}}
+        <button onclick="location.href='/borrarJaula/{{id}}'">X</button>
+        {{/propietario}}
+      </li>
+      {{/usuario.jaulas}}
+    </ul>
+  </div>
+  {{#propietario}}
+  <button onclick="location.href='/nuevaJaula'">Crear Jaula</button>
+  {{/propietario}}
+  <h3>Mensajes</h3>
+    <div>
+    <ul>
+      {{#usuario.mensajes}}
+      <li>
+        {{this}}
+        {{#propietario}}
+        <button onclick="location.href='/borrarMensaje/{{id}}'">X</button>
+        {{/propietario}}
+      </li>
+      {{/usuario.mensajes}}
+    </ul>
+  </div>
+  
+  <h3>Hilos</h3>
+    <div>
+    <ul>
+      {{#usuario.hilos}}
+      <li>
+        <a href="/hilos/{{id}}">{{titulo}}</a>
+        {{#propietario}}
+        <button onclick="location.href='/borrarHilo/{{id}}'">X</button>
+        {{/propietario}}
+      </li>
+      {{/usuario.hilos}}
+    </ul>
+  </div> 
+  {{#propietario}}
+  <button onclick="location.href='/nuevoHilo'">Crear Hilo</button>
+  {{/propietario}}
+  	{{#admin}}
+		<button onclick="location.href='/borrarUsuario/{{usuario.id}}'">Eliminar Cuenta</button>
+	{{/admin}}
+</div>
+
+{{>footer}}

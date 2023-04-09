@@ -1,0 +1,24 @@
+{{>header}}
+
+<div>
+  <h2>"{{jaula.id}}"</h2>
+  
+  <div>
+    <p>{{jaula.nombre}}</p>
+  </div>
+  
+  <div>
+    <ul>
+      {{#jaula.pajaros}}
+      <li>
+        {{this}}
+        <button onclick="location.href='/borrarPajaro/{{id}}'">X</button>
+      </li>
+      {{/jaula.pajaros}}
+    </ul>
+  </div>
+  <button onclick="location.href='/jaula/{{jaula.id}}/nuevoPajaro'">Nuevo Pajaro</button>
+  
+</div>
+
+{{>footer}}

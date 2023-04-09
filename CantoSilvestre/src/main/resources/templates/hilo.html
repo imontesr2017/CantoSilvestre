@@ -1,0 +1,27 @@
+{{>header}}
+
+<div>
+  <h2>"{{hilo.titulo}}"</h2>
+  
+  <div>
+    <p>{{hilo.descripcion}}</p>
+  </div>
+  
+  <div>
+    <ul>
+      {{#hilo.listaMensajes}}
+      <li>
+        {{this}}
+      </li>
+      {{/hilo.listaMensajes}}
+    </ul>
+  </div>
+  {{#logged}}
+  <button onclick="location.href='/hilo/{{hilo.id}}/nuevoMensaje'">Nuevo Mensaje</button>
+  {{/logged}}
+ 
+
+
+</div>
+
+{{>footer}}
