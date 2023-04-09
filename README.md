@@ -89,7 +89,7 @@ Diagrama de navegación
 
 Diagrama UML
 
-![imagen](https://user-images.githubusercontent.com/85401502/221797626-9c3b09c0-e9cf-4a89-97b4-892dc9a15ea7.png)
+![imagen](https://user-images.githubusercontent.com/85401502/230801315-ec3f923c-b2f6-494f-8924-30b0f27fc2ae.png)
 
 Definición de la interfaz entre el servicio y la aplicación web:
 El servicio constiste en una base de datos gubernamental en la que se encuentran almacenados los datos de los Españoles con licencia de silvestrismo.
