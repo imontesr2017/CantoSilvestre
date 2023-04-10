@@ -56,6 +56,14 @@ Página de un usuario.
 
 Página para añadir un pájaro nuevo.
 
+![imagen](https://user-images.githubusercontent.com/85401502/230805268-1547cbc6-d8dd-4f11-9ec5-87abdddf20c8.png)
+
+Error id de pajaro ya registrado.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230805307-0f26cd57-c7c2-46e6-b1c5-4fde64b3a007.png)
+
+Error id de pajaro no pertenece al usuario.
+
 ![imagen](https://user-images.githubusercontent.com/85401502/230797325-72a963c9-df43-464b-8d5a-196fe6001cac.png)
 
 Página para añadir una jaula.
@@ -82,6 +90,13 @@ Página con los usuarios de la aplicación.
 
 Página nuevo usuario.
 
+![imagen](https://user-images.githubusercontent.com/85401502/230805170-ce55cad6-7f15-49c2-9e0a-62904c909952.png)
+
+Error id de usuario ya existente.
+
+![imagen](https://user-images.githubusercontent.com/85401502/230805196-1f74fa4f-db5f-4ad2-84ab-944d58fdd96d.png)
+
+Error el id de usuario no se corresponde con ningun usuario con licencia.
 
 Diagrama de navegación
 ![Diagrama Navegación](https://user-images.githubusercontent.com/85401502/223211844-34426b93-537f-48e4-b8f7-ffe1e05a3e44.jpg)
