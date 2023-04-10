@@ -82,7 +82,7 @@ Error el id de usuario no se corresponde con ningun usuario con licencia.
 
 Diagrama de navegación
 
-![Diagrama Navegación](https://user-images.githubusercontent.com/85401502/223211844-34426b93-537f-48e4-b8f7-ffe1e05a3e44.jpg)
+![diagrama fase 3](https://user-images.githubusercontent.com/85401502/230806120-b69ef2f2-2448-4737-ab66-a0c1d0b94980.jpg)
 
 
 Diagrama UML
@@ -136,6 +136,7 @@ cd target/
 java -jar nombreDelJar
 
 Ejecutar el servicio interno antes de la aplicación.
+
 
 
 
