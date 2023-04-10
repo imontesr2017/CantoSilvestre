@@ -19,86 +19,69 @@ Capturas de pantalla de las ventanas:
 Vista de un usuario no registrado.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230796909-ffb970c1-a681-4f7d-adda-19b8bcddaa41.png)
-
 Página con los hilos de mensajes del foro. También puedes hacer login en la parte superior.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230796949-480cdf37-aee5-4101-b7c0-50ec2415f3cd.png)
-
 Página de un hilo. También puedes hacer login en la parte superior.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230796976-7517a847-d2a7-468c-b223-97ddfe407b17.png)
-
 Página de login incorrecto.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797006-d647fae5-3847-4bf8-a5a7-73abd35269c7.png)
-
 Página de login.
 
 Vista de usuario registrado (no administrador).
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797044-0ba7883e-ad8a-461f-a97f-cfd95c7c30df.png)
-
 Página con los hilos de mensajes del foro. También puedes desloguearte en la parte superior.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797168-7ccd64d1-7499-4ce8-86d0-ed1464d5b761.png)
-
 Página de un hilo.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797194-773a1170-e471-4eb9-9402-381657ead261.png)
-
 Página para añadir un mensaje.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797244-b3a311ec-9e60-464c-a7a2-e818678b5fce.png)
-
 Página de un usuario.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797289-d89f6863-071c-4e09-a978-a4a93258078c.png)
-
 Página para añadir un pájaro nuevo.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230805268-1547cbc6-d8dd-4f11-9ec5-87abdddf20c8.png)
-
 Error id de pajaro ya registrado.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230805307-0f26cd57-c7c2-46e6-b1c5-4fde64b3a007.png)
-
 Error id de pajaro no pertenece al usuario.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797325-72a963c9-df43-464b-8d5a-196fe6001cac.png)
-
 Página para añadir una jaula.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797343-49537e49-a8cb-4d1d-bb77-d207e0ad50c1.png)
-
 Página de una jaula.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797374-d2b77eb5-7ce1-4137-8ea9-e3c8ee5378b8.png)
-
 Página para añadir un hilo.
 
 Vista de administrador.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797408-4133f618-1862-4df1-9b81-b65c91e6c35b.png)
-
 Página del foro.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797433-88936d85-a4c6-47c6-b7fb-8a5c5b50fe64.png)
-
 Página con los usuarios de la aplicación.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230797442-23d1f8ce-ff84-4917-9cd5-f65027785920.png)
-
 Página nuevo usuario.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230805170-ce55cad6-7f15-49c2-9e0a-62904c909952.png)
-
 Error id de usuario ya existente.
 
 ![imagen](https://user-images.githubusercontent.com/85401502/230805196-1f74fa4f-db5f-4ad2-84ab-944d58fdd96d.png)
-
 Error el id de usuario no se corresponde con ningun usuario con licencia.
 
+
 Diagrama de navegación
+
 ![Diagrama Navegación](https://user-images.githubusercontent.com/85401502/223211844-34426b93-537f-48e4-b8f7-ffe1e05a3e44.jpg)
 
 
