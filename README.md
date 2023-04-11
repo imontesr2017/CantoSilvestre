@@ -111,6 +111,8 @@ Paso 1: Instalar java.
 En el caso de que Java no este instalado en la máquina busque en su navegador "descargar java" + nombre de su sistema operativo.
 Abra la pagina oficial de java (ejemplo linux) https://www.java.com/es/download/help/linux_x64_install.html y siga las intrucciones de instalación.
 
+Instale maven con "sudo apt install maven"
+
 Paso2: Instalar y configurar MySQL.
 
 Instale MySQL en su máquina. En caso de ser una máquina con SO tipo linux, ejecute la siguiente linea en la consola de comandos "sudo apt install mysql-server"
