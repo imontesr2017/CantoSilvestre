@@ -129,12 +129,17 @@ Enlace al proyecto en gitHub: https://github.com/imontesr2017/CantoSilvestre
 Descargalo y descomprimelo.
 
 Paso 4: Genera los jar
+
 Utiliza el comando "sudo apt install maven"
 
 Después ejecuta los siguientes comandos en sus las carpetas de los proyectos (donde se encuentra el archivo pom).
+
 mvn clean install
+
 mvn package
+
 cd target/
+
 java -jar nombreDelJar
 
 Ejecutar el servicio interno antes de la aplicación.
