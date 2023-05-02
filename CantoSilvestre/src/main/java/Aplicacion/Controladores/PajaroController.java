@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -43,6 +44,9 @@ public class PajaroController {
 	private JaulaService jaulaService;
 	@Autowired
 	private PajaroService pajaroService;
+	
+	@Value("${app.servicio.rest:localhost}")
+	private String servicioInternoRest;
 	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -79,9 +83,11 @@ public class PajaroController {
 		Usuario usuario = usuarioService.findById((Long) model.getAttribute("userId")).get();
 		Jaula jaula = null;
 		
+		System.setProperty("proxyHost", "yourproxy.server.com");
+		System.setProperty("proxyPort", "8080"); 
 		
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:8080/usuarios/" + usuario.getId()+"/pajaro/"+idPajaro;
+		String url = "http://"+ servicioInternoRest + ":8080/usuarios" + usuario.getId()+"/pajaro/"+idPajaro;
 		Boolean valido = restTemplate.getForObject(url, Boolean.class);
 		if (!valido) {
 			return "idPajaroInvalido";

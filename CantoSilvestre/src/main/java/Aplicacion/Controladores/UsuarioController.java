@@ -72,10 +72,11 @@ public class UsuarioController {
 	
 	@PostConstruct
 	public void init() {
+		
 		Usuario pepe = new Usuario(1, "Pepe", passwordEncoder.encode("1234"), "USER");
 		Usuario marta = new Usuario(2, "Marta", passwordEncoder.encode("1111"), "USER");
 		Usuario sara = new Usuario(3, "Sara", passwordEncoder.encode("pajaro"), "USER");
-		Usuario admin = new Usuario(0, "admin", passwordEncoder.encode("admin"), "USER", "ADMIN");
+		Usuario admin = new Usuario(10, "admin", passwordEncoder.encode("admin"), "USER", "ADMIN");
 		
 		Jaula jaulaCrianza = new Jaula(pepe.getId(),"Crianza");
 		Jaula jaulaAdultos = new Jaula(marta.getId(),"Competicion");
