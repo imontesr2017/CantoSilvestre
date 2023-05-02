@@ -34,8 +34,8 @@ public class UsuarioController {
 	
 	@PostConstruct
 	public void init() {
-		List<Pajaro> user0, user1, user2, user3, user4, user5, user6;
-		user0 = new LinkedList();
+		List<Pajaro> user10, user1, user2, user3, user4, user5, user6;
+		user10 = new LinkedList();
 		user1 = new LinkedList();
 		user2 = new LinkedList();
 		user3 = new LinkedList();
@@ -45,7 +45,7 @@ public class UsuarioController {
 		
 		
 		for(int i = 0; i<PAJAROS_MAX; i++) {
-			user0.add(new Pajaro(0*PAJAROS_MAX+i));
+			user10.add(new Pajaro(10*PAJAROS_MAX+i));
 			user1.add(new Pajaro(1*PAJAROS_MAX+i));
 			user2.add(new Pajaro(2*PAJAROS_MAX+i));
 			user3.add(new Pajaro(3*PAJAROS_MAX+i));
@@ -57,7 +57,7 @@ public class UsuarioController {
 		Usuario pepe = new Usuario(1, user1);
 		Usuario marta = new Usuario(2, user2);
 		Usuario sara = new Usuario(3, user3);
-		Usuario admin = new Usuario(0, user0);
+		Usuario admin = new Usuario(10, user10);
 		Usuario usuario4 = new Usuario(4, user4);
 		Usuario usuario5 = new Usuario(5, user5);
 		Usuario usuario6 = new Usuario(6, user6);
