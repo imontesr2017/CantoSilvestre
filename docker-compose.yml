@@ -1,0 +1,54 @@
+version: '3'
+
+volumes:
+  db:
+    driver: local
+    
+services:
+  db: 
+    image: mysql:8
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+        - ./init:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=CantoSilvestre
+
+  web:
+    build: CantoSilvestre/.
+    expose: 
+      - "8443"
+    ports:
+      - "8443:8443"
+    restart: unless-stopped
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/CantoSilvestre
+      - APP_SERVICIO_REST=loadbalancer
+    deploy:
+      mode: replicated
+      replicas: 1
+      
+  rest:
+    build: Silvestrismo/.
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/CantoSilvestre
+      - APP_SERVICIO_REST=loadbalancer
+    deploy:
+      mode: replicated
+      replicas: 1
+  
+  loadbalancer:
+    image: haproxy:2.7.3
+    ports:
+      - "9443:443" # Only service that is exposed to the host is the lb
+      - "8181:8181" # Haproxy Stats
+      - "9090:80" # http (should not work)
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    restart: unless-stopped
+      
