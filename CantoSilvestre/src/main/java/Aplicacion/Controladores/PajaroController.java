@@ -83,11 +83,10 @@ public class PajaroController {
 		Usuario usuario = usuarioService.findById((Long) model.getAttribute("userId")).get();
 		Jaula jaula = null;
 		
-		System.setProperty("proxyHost", "yourproxy.server.com");
-		System.setProperty("proxyPort", "8080"); 
+		
 		
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://"+ servicioInternoRest + ":8080/usuarios" + usuario.getId()+"/pajaro/"+idPajaro;
+		String url = "http://"+ servicioInternoRest + ":8080/usuarios/" + usuario.getId()+"/pajaro/"+idPajaro;
 		Boolean valido = restTemplate.getForObject(url, Boolean.class);
 		if (!valido) {
 			return "idPajaroInvalido";

@@ -92,6 +92,7 @@ public class HiloController {
 		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
 		Hilo hilo = new Hilo(titulo, descripcion);
 		usuario.getHilos().add(hilo);
+		hiloService.save(hilo);
 		usuarioService.save(usuario);
 		
 		return "redirect:/perfil";

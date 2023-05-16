@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Value;
 
 import Aplicacion.Clases.Hilo;
 import Aplicacion.Clases.Jaula;
@@ -48,6 +49,9 @@ public class UsuarioController {
 	@Autowired
 	private PajaroService pajaroService;
 	
+	@Value("${app.servicio.rest:localhost}")
+	private String servicioInternoRest;
+	
 	//Seguridad
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -72,8 +76,8 @@ public class UsuarioController {
 	
 	@PostConstruct
 	public void init() {
-		
-		Usuario pepe = new Usuario(1, "Pepe", passwordEncoder.encode("1234"), "USER");
+		try{
+		Usuario pepe = new Usuario(1, "Pepe", passwordEncoder.encode("1234"), "USER", "ADMIN");
 		Usuario marta = new Usuario(2, "Marta", passwordEncoder.encode("1111"), "USER");
 		Usuario sara = new Usuario(3, "Sara", passwordEncoder.encode("pajaro"), "USER");
 		Usuario admin = new Usuario(10, "admin", passwordEncoder.encode("admin"), "USER", "ADMIN");
@@ -121,7 +125,7 @@ public class UsuarioController {
 		usuarioService.save(marta);
 		usuarioService.save(sara);
 		usuarioService.save(admin);
-		
+		} catch (Exception e){}
 	}
 	
 	@GetMapping("/usuarios")
@@ -165,7 +169,7 @@ public class UsuarioController {
 			return "usuarioExistente";
 		}
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:8080/usuarios/" + id;
+		String url = "http://"+ servicioInternoRest + ":8080/usuarios/" + id;
 		Boolean valido = restTemplate.getForObject(url, Boolean.class);
 		
 		if (!valido) {
