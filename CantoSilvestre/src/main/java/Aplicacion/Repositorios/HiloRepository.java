@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import Aplicacion.Clases.Hilo;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public interface HiloRepository extends JpaRepository<Hilo, Long>{
 	@Cacheable
 	Optional<Hilo> findById(Long id);
 	
-	@Cacheable
+	@CachePut
 	List<Hilo> findAll();
 
 }
