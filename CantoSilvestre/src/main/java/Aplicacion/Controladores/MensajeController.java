@@ -71,18 +71,11 @@ public class MensajeController {
 	@RequestMapping("/hilo/{idHilo}/guardarMensaje")
 	public String guardarMensaje(Model model, @PathVariable int idHilo, @RequestParam String texto) {
 		Usuario usuario = usuarioService.findByName((String) model.getAttribute("userName")).get();
-		Hilo hilo = null;
-		for(Hilo h : usuario.getHilos()) {
-			if (h.getId()==idHilo) {
-				hilo = h;
-				break;
-			}
-			
-		}
-		
+		Hilo hilo = hiloService.findById((long) idHilo).get();
 		Mensaje mensaje = new Mensaje(usuario.getName()+": "+texto);
 		hilo.getListaMensajes().add(mensaje);
 		usuario.getMensajes().add(mensaje);
+		hiloService.save(hilo);
 		usuarioService.save(usuario);
 		return "redirect:/hilos/"+idHilo;
 	}
